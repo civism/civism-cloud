@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: civism-cloud-consumer
+
+server:
+  port: 8083
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+    instance-id:  ${spring.cloud.client.ip-address}:${server.port}  # 将InstanceID设置为 IP:Port 形式
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+
+feign:
+  httpclient:
+    enabled: true
+ribbon:
+  eureka:
+    enabled: true
